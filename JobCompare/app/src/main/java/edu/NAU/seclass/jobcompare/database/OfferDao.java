@@ -41,7 +41,7 @@ public class OfferDao {
         return db.insert("offer", null, values);
     }
 
-    public boolean update(Job job) {
+    public boolean update(Job job, WeightConfig config) {
         ContentValues values = new ContentValues();
         values.put("title", job.JobTitle);
         values.put("company", job.Company);
@@ -56,6 +56,7 @@ public class OfferDao {
         values.put("pet", job.Pet);
         values.put("currentJob", job.CurrentJob);
         values.put("shared", job.shared);
+        values.put("score", new ScoreAlgorithm().calculateScore(job, config));
         return db.update("offer", values, "id = ?", new String[]{String.valueOf(job.id)}) > 0;
     }
 

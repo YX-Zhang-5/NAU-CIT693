@@ -166,12 +166,11 @@ public class EnterJobDetails extends AppCompatActivity {
             return;
         }
 */
-
+        WeightConfig config = new ConfigDao(this).queryOne(account);
         if (myJob.id == null) {
-            WeightConfig config = new ConfigDao(this).queryOne(account);
             offerDao.insert(myJob, account, config == null ? new WeightConfig() : config);
         } else {
-            offerDao.update(myJob);
+            offerDao.update(myJob, config == null ? new WeightConfig() : config);
         }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.NAU.seclass.jobcompare.database.ConfigDao;
 import edu.NAU.seclass.jobcompare.database.OfferDao;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,17 +18,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String account = getSharedPreferences("userInfo", MODE_PRIVATE).getString("account", null);
-
+        WeightConfig config = new ConfigDao(this).queryOne(account);
+        new OfferDao(this).updateAllScore(null,config == null ? new WeightConfig() : config);
         if ("admin".equals(account)) {
             findViewById(R.id.EnterEditJD).setVisibility(View.GONE);
             findViewById(R.id.CompareSharedJobOffer).setVisibility(View.GONE);
             findViewById(R.id.ManageAccount).setVisibility(View.VISIBLE);
             findViewById(R.id.Statistics).setVisibility(View.VISIBLE);
         }
-
+/*
         if (CountJobs(account) < 2) {
             findViewById(R.id.CompareJobOffer).setEnabled(false);
         }
+
+ */
     }
 
     public void onOfferClick(View view) {

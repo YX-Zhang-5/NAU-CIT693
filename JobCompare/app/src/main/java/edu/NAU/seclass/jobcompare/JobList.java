@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.NAU.seclass.jobcompare.database.ConfigDao;
 import edu.NAU.seclass.jobcompare.database.OfferDao;
 
 public class JobList extends AppCompatActivity {

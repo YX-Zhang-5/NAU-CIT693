@@ -7,8 +7,8 @@ public class ScoreAlgorithm {
         if (Objects.equals(myjob.LivingCost, "0")){
             myjob.LivingCost = "120000";
         }
-        int AYS = Integer.valueOf(myjob.Salary)* 120000/Integer.valueOf(myjob.LivingCost);
-        int AYB = Integer.valueOf(myjob.Bounus)* 120000/Integer.valueOf(myjob.LivingCost);
+        int AYS = Integer.valueOf(myjob.Salary)* (1200000/Integer.valueOf(myjob.LivingCost))/10;
+        int AYB = Integer.valueOf(myjob.Bounus)* (1200000/Integer.valueOf(myjob.LivingCost))/10;
         int GYM = Integer.valueOf(myjob.Gym);
         int LT = Integer.valueOf(myjob.LeaveTime);
         int MATCH = Integer.valueOf(myjob.Match);

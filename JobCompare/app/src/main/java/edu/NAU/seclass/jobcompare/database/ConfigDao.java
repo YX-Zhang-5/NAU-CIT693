@@ -53,4 +53,8 @@ public class ConfigDao {
         cursor.close();
         return config;
     }
+
+    public void delete(String account) {
+        db.delete("config","account = ?", new String[] {account});
+    }
 }

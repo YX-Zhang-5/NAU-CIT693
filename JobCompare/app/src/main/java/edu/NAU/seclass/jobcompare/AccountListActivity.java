@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import edu.NAU.seclass.jobcompare.database.ConfigDao;
 import edu.NAU.seclass.jobcompare.database.UserDao;
 
 public class AccountListActivity extends AppCompatActivity {
@@ -39,7 +40,7 @@ public class AccountListActivity extends AppCompatActivity {
                     .setTitle("提示")
                     .setMessage("是否删除该用户？")
                     .setPositiveButton("确定", (dialogInterface, i1) -> {
-                        if (userDao.delete(accounts.get(i).get("name"))) {
+                        if (userDao.delete(accounts.get(i).get("name"), new ConfigDao(this))) {
                             accounts.remove(i);
                             adapter.notifyDataSetChanged();
                         } else {

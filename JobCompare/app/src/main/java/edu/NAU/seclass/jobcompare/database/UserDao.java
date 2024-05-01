@@ -31,8 +31,12 @@ public class UserDao {
         return db.update("account", values, "name = ?", new String[] {userName}) > 0;
     }
 
-    public boolean delete(String userName) {
-        return db.delete("account","name = ?", new String[] {userName}) > 0;
+    public boolean delete(String userName, ConfigDao configDao) {
+        boolean ret = db.delete("account", "name = ?", new String[] {userName}) > 0;
+        if (ret) {
+            configDao.delete(userName);
+        }
+        return ret;
     }
 
     @SuppressLint("Range")
